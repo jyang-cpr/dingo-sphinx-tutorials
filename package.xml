@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>dingo_tutorials</name>
+  <version>0.0.1</version>
+  <description>Dingo's tutorials.</description>
+  <maintainer email="civerachb@clearpathrobotics.com">Chris Iverach-Brereton</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">https://clearpathrobotics.com/dingo-indoor-mobile-robot/</url>
+  <author email="civerachb@clearpathrobotics.com">Chris Iverach-Brereton</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rosdoc_lite</build_depend>
+
+  <export>
+  </export>
+</package>
