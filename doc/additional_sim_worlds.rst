@@ -8,6 +8,17 @@ intended to be included in any custom world to add a Dingo simulation to it.
 .. image:: images/dingo_empty_world.png
   :alt: Dingo in the Empty World environment
 
+To add a Dingo to any of your own worlds, simply include the ``spawn_dingo.launch`` file in your own world's launch:
+
+.. code-block:: xml
+  <include file="$(find dingo_gazebo)/launch/spawn_dingo.launch">
+    <!-- Optionally configure the spawn position
+    <arg name="x" value="$(arg x)"/>
+    <arg name="y" value="$(arg y)"/>
+    <arg name="z" value="$(arg z)"/>
+    <arg name="yaw" value="$(arg yaw)"/>
+  </include>
+
 Finally, Clearpath provides an additional suite of simulation environments that can be downloaded separately and used
 with Dingo, as described below.
 
