@@ -42,6 +42,7 @@ Additional topics coming soon!
 
     Overview <self>
     simulation
+    additional_sim_worlds
     navigation
     controllers
     network
