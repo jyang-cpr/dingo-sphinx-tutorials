@@ -11,6 +11,7 @@ intended to be included in any custom world to add a Dingo simulation to it.
 To add a Dingo to any of your own worlds, simply include the ``spawn_dingo.launch`` file in your own world's launch:
 
 .. code-block:: xml
+
   <include file="$(find dingo_gazebo)/launch/spawn_dingo.launch">
     <!-- Optionally configure the spawn position
     <arg name="x" value="$(arg x)"/>
