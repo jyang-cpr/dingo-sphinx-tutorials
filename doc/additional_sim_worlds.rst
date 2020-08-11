@@ -13,7 +13,7 @@ To add a Dingo to any of your own worlds, simply include the ``spawn_dingo.launc
 .. code-block:: xml
 
   <include file="$(find dingo_gazebo)/launch/spawn_dingo.launch">
-    <!-- Optionally configure the spawn position
+    <!-- Optionally configure the spawn position -->
     <arg name="x" value="$(arg x)"/>
     <arg name="y" value="$(arg y)"/>
     <arg name="z" value="$(arg z)"/>
