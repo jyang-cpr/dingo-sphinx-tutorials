@@ -16,8 +16,8 @@ mobile robot. The tutorials topics are listed in the left column, and presented 
 
 .. Note::
 
-  Dingo is still under active development.  As such these tutorials may be incomplete in certain areas.  We apologize
-  for any inconvenience this may cause.
+  Dingo is still under active development.  As such these tutorials may be incomplete in certain areas and are subject to change.
+  We apologize for any inconvenience this may cause.
 
 .. Note::
 
