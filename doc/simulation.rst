@@ -83,6 +83,11 @@ rviz has a very different purpose— unlike Gazebo, which shows the reality of t
 the robot's *perception* of its world, whether real or simulated. So while Gazebo won't be used with your
 real Jackal, rviz is used with both.
 
+.. Note::
+
+  If you are working with a simulated robot you should leave Gazebo running and open a new terminal to launch rviz.
+  Make sure to run ``source devel/setup.bash`` when opening the new terminal.
+
 You can using the following launch invocation to start rviz with a pre-cooked configuration suitable for
 visualizing any standard Jackal config:
 
