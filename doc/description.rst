@@ -23,53 +23,113 @@ summary of their effects and default values
 
 .. raw:: html
 
-    <table><tbody><tr>  <td><p><strong>Variable</strong> </p></td>
+    <table><tbody><tr><td><p><strong>Variable</strong> </p></td>
       <td><p><strong>Default</strong> </p></td>
       <td><p><strong>Description</strong> </p></td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_OMNI</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_OMNI</tt> </p></td>
       <td><p><tt>0</tt> </p></td>
       <td><p>Set to 1 to switch from Dingo-D to Dingo-O (with omni-directional mecanum wheels)</p></td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_URDF_EXTRAS</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_URDF_EXTRAS</tt> </p></td>
       <td><p><tt>emptyu.urdf</tt> </p></td>
       <td><p>Specifies the path to a URDF file with which to extend the robot's physical configuraiton</p></td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_CONTROL_EXTRAS</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_CONTROL_EXTRAS</tt> </p></td>
       <td><p><tt>0</tt> </p></td>
       <td><p>Set to 1 to enable loading <tt>DINGO_CONTROL_EXTRAS_PATH</tt></p></td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_CONTROL_EXTRAS_PATH</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_CONTROL_EXTRAS_PATH</tt> </p></td>
       <td><p><i>undefined</i> </p></td>
       <td><p>Path to a YAML file on-disk that can be used to override or extend Dingo's default controls</p></td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_CONFIG</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_CONFIG</tt> </p></td>
       <td><p><tt>base</tt> </p></td>
       <td><p>Specifies what pre-made sensor/mission configuration to load (see below)</p></td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER</tt> </p></td>
+    <!--
+      LIDAR Sensors
+    -->
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER</tt> </p></td>
       <td><p><tt>0</tt> </p></td>
       <td><p>Set to 1 to equip Dingo with a lidar unit</p></td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_HOKUYO</tt> </p></td>
-      <td><p><tt>0</tt> </p></td>
-      <td><p>Use a Hokuyo UST-10 lidar instead of the default SICK LMS-1xx. Ignored if <tt>DINGO_LASER</tt> is <tt>0</tt>.</p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_MODEL</tt> </p></td>
+      <td><p><tt>lms1xx</tt> </p></td>
+      <td>
+        <p>Sets the model of lidar sensor on the robot. Ignored if <tt>DINGO_LASER</tt> is <tt>0</tt>.  Allowed values are:</p>
+        <ul>
+          <li><tt>lms1xx</tt> - Sick LMS-1xx (default)</li>
+          <li><tt>ust10</tt> - Hokuyo UST-10</li>
+        </ul>
+      </td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_MOUNT</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_MOUNT</tt> </p></td>
       <td><p><tt>front</tt> </p></td>
-      <td><p>Defines the mount point the Dingo's laser is connected to</p></td>
+      <td>
+        <p>Defines the mount point the Dingo's laser is connected to.  Allowed values are:</p>
+        <ul>
+          <li><tt>front</tt></li>
+          <li><tt>mid</tt></li>
+          <li><tt>rear</tt></li>
+        </ul>
+      </td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_TOPIC</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_TOPIC</tt> </p></td>
       <td><p><tt>front/scan</tt> </p></td>
       <td><p>The ROS topic that Dingo's lidar publishes on</p></td>
     </tr>
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_OFFSET</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_OFFSET</tt> </p></td>
       <td><p><tt>0.11 0 0</tt> </p></td>
       <td><p>XYZ offset for Dingo's lidar</p></td>
     </tr
-    <tr>  <td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_RPY</tt> </p></td>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_RPY</tt> </p></td>
       <td><p><tt>0 0 0</tt> </p></td>
       <td><p>RPY offset for Dingo's lidar</p></td>
+    </tr>
+    <!--
+      RealSense Sensors
+    -->
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_REALSENSE</tt> </p></td>
+      <td><p><tt>0</tt> </p></td>
+      <td><p>Set to 1 to equip Dingo with a RealSense depth camera</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_REALSENSE_MODEL</tt> </p></td>
+      <td><p><tt>d435</tt> </p></td>
+      <td>
+        <p>Sets the model of RealSense camera on the robot. Ignored if <tt>DINGO_REALSENSE</tt> is <tt>0</tt>.  Allowed values are:</p>
+        <ul>
+          <li><tt>d435</tt> (default)</li>
+          <li><tt>d435i</tt></li>
+          <li><tt>d415</tt></li>
+          <li><tt>d455</tt> <i>Note: this camera is not supported by the <tt>realsense2_camera</tt> package yet; it is included or future compatibility</i></li>
+          <li><tt>l515</tt></li>
+        </ul>
+      </td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_REALSENSE_MOUNT</tt> </p></td>
+      <td><p><tt>front</tt> </p></td>
+      <td>
+        <p>Defines the mount point the Dingo's RealSense is connected to</p>
+        <ul>
+          <li><tt>front</tt></li>
+          <li><tt>mid</tt></li>
+          <li><tt>rear</tt></li>
+          <li><tt>front_bumper</tt></li>
+        </ul>
+      </td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_REALSENSE_TOPIC</tt> </p></td>
+      <td><p><tt>realsense</tt> </p></td>
+      <td><p>The ROS namespace that Dingo's Realsense topics publish in.  e.g. pointcloud data will be in <tt>$(DINGO_REALSENSE_TOPIC)/depth/color/points</tt></p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_REALSENSE_OFFSET</tt> </p></td>
+      <td><p><tt>0 0 0</tt> </p></td>
+      <td><p>XYZ offset for Dingo's RealSense</p></td>
+    </tr
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_REALSENSE_RPY</tt> </p></td>
+      <td><p><tt>0 0 0</tt> </p></td>
+      <td><p>RPY offset for Dingo's RealSense</p></td>
     </tr>
     </tbody></table>
 
