@@ -131,6 +131,33 @@ summary of their effects and default values
       <td><p><tt>0 0 0</tt> </p></td>
       <td><p>RPY offset for Dingo's RealSense</p></td>
     </tr>
+    <!--
+      Arm Configuration
+    -->
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_MODEL</tt> </p></td>
+      <td><p><tt>gen3_lite</tt> </p></td>
+      <td><p>The model of arm mounted to the Dingo</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_GRIPPER</tt> </p></td>
+      <td><p><tt>gen3_lite_2f</tt> </p></td>
+      <td><p>The type of gripper mounted to the end of the arm</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_DOF</tt> </p></td>
+      <td><p><tt>6</tt> </p></td>
+      <td><p>The number of degrees of freedom in the arm</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_XYZ</tt> </p></td>
+      <td><p><tt>0 0 0</tt> </p></td>
+      <td><p>XYZ offset for Dingo's arm relative to <tt>mid_mount</tt></p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_RPY</tt> </p></td>
+      <td><p><tt>0 0 0</tt> </p></td>
+      <td><p>RPY offset for Dingo's arm relative to <tt>mid_mount</tt></p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_HOST</tt> </p></td>
+      <td><p><tt>192.168.131.40</tt> </p></td>
+      <td><p>IP address of the Dingo's arm</p></td>
+    </tr>
     </tbody></table>
 
 Configurations

@@ -46,6 +46,7 @@ Additional topics coming soon!
     navigation
     controllers
     network
+    manipulation
 
 .. toctree::
     :titlesonly:

@@ -1,0 +1,178 @@
+Mobile Manipulation
+======================
+
+.. image:: images/dingo-manipulation-banner.png
+  :alt: Dingo mobile manipulation
+
+.. warning::
+
+  To-date the Gen3 Lite arm has only been tested on Dingo-D; while the Dingo-O is technically capable of supporting it,
+  there may be additional configuration steps & debugging needed.
+
+The Dingo-O and Dingo-D can support a Kinova Gen3 Lite 6-DOF arm.  This section explains how to add the arm to
+your robot and install the appropriate drivers.
+
+Physical Installation
+------------------------
+
+.. note::
+
+  This section is still in-progress; we will add more details & pictures in the near future
+
+First, power off the robot and install the arm.  The arm's power regulator can be placed inside one of the
+extra payload bays on the Dingo-O.  On Dingo-D the power regulator must be mounted to the outside of the robot.
+
+
+Network Confguration
+---------------------
+
+By default the Gen3 Lite runs a DHCP server accessible over the micro-USB cable.  The arm's default IP address is
+192.168.1.10.  Kinova provides a web interface for configuring the robot's network.  We recommend modifying the
+default configuration to set a static IP address on the robot's internal 192.168.131.* address space.  This is
+not required, but it may simplify setting up the driver.
+
+If you choose to assign the arm a static IP address, modify ``/etc/network/interfaces`` to add the ``usb*`` interfaces
+to the network bridge.  Change
+
+.. code-block:: bash
+
+  bridge_ports regex (eth.*)|(en.*)
+
+to:
+
+.. code-block:: bash
+
+  bridge_ports regex (eth.*)|(en.*)|(usb.*)
+
+If instead you wish to keep the robot's DHCP server running and use the default IP address from the arm, add the
+following to ``/etc/network/interfaces``:
+
+.. code-block:: bash
+
+  auto usb0
+  allow-hotplug usb0
+  iface usb0 inet dhcp
+
+This will automatically assign an IP address to the robot's ``usb0`` network interface and allow the robot to
+communicate with the arm.
+
+
+Driver Installation
+------------------------
+
+Create a catkin workspace and clone the ``dingo_manipulation`` and ``ros_kortex`` packages into it:
+
+.. code-block:: bash
+
+  mkdir -p ~/catkin_ws/src
+  cd ~/catkin_ws
+  catkin_init_workspace src
+  cd src
+  git clone https://github.com/dingo-cpr/dingo_manipulation
+  git clone https://github.com/Kinovarobotics/ros_kortex
+
+The ``ros_kortex`` package requires additional steps before it can be built:
+
+.. code-block:: bash
+
+  sudo apt install python3 python3-pip
+  sudo python3 -m pip install conan
+  conan config set general.revisions_enabled=1
+  conan profile new default --detect > /dev/null
+  conan profile update settings.compiler.libcxx=libstdc++11 default
+
+Install any additional necessary ROS dependencies:
+
+.. code-block:: bash
+
+  cd ~/catkin_ws
+  rosdep install --from-paths src --ignore-src -r -y
+
+Finally build the packages.  ``ros_kortex`` can take a very long time to build.  This is normal.
+
+.. code-block:: bash
+
+  cd ~/catkin_ws
+  catkin_make
+
+If your Dingo has a Jetson computer you need to specify additional parameters to build ``ros_kortex``:
+
+.. code-block:: bash
+
+  catkin_make --cmake-args -DCONAN_TARGET_PLATFORM=jetson
+
+Once everything is built remember to source your workspace: ``source $HOME/catkin_ws/devel/setup.bash``.
+
+
+URDF Configuration
+----------------------
+
+Next you must add the arm to your robot's URDF.  The easiest way to do this is to use the ``DINGO_URDF_EXTRAS``
+environment variable.  Edit ``/etc/ros/setup.bash`` and add the following to the end of it:
+
+.. code-block:: bash
+
+  # source the catkin workspace; edit this path as necessary for your robot
+  source /home/administrator/catkin_ws/devel/setup.bash
+
+  # add the gen3 lite description to the URDF
+  export DINGO_URDF_EXTRAS=$(catkin_find dingo_kinova_description urdf/dingo_gen3_lite_description.urdf.xacro --first-only)
+
+This will mount the arm to the ``mid_mount`` link on the robot's chassis.  To apply an offset and/or rotation, set
+the ``DINGO_ARM_XYZ`` and ``DINGO_ARM_RPY`` environment variables.  See :doc:`Dingo Description <description>`
+for a summary of all available environment variables.
+
+If your robot already has a ``DINGO_URDF_EXTRAS`` then simply include the ``dingo_gen3_lite_description.urdf.xacro``
+file in it:
+
+.. code-block:: xml
+
+  <include filename="$(find dingo_kinova_description)/urdf/dingo_gen3_lite_description.urdf.xacro" />
+
+To verify that your model is correct you can use ``roslaunch dingo_viz view_model.launch``.  You should see the arm
+sticking straight up in the air:
+
+.. image:: images/dingo_kinova_model.png
+  :alt: Dingo-D model with Kinova Gen3 Lite
+
+
+Driver Bringup & Controlling the Arm
+--------------------------------------
+
+To control the arm you must run 2 launch files: one to launch the underlying ``ros_kortex`` driver to control the
+arm and the second to launch the moveit interface to allow for planning & executing commands.  In two separate terminals
+run the folliwing commands:
+
+.. code-block:: bash
+
+  roslaunch dingo_kinva_bringup dingo_gen3_lite_bringup.launch
+
+.. code-block:: bash
+
+  roslaunch dingo_gen3_lite_moveit_config dingo_gen3_lite_moveit_planning_execution.launch
+
+To make sure everything is working, set the ``ROS_MASTER_URI`` on your computer to use the robot, and then
+launch rviz:
+
+.. code-block:: bash
+
+  export ROS_MASTER_URI=http://<your-robot>:11311
+  rviz
+
+.. note::
+
+  This assumes you have :doc:`configured your network <network>` correctly to allow remote rviz connections
+
+In rviz, add the Mobile Manipulation topic.  After a moment you should see the robot with the arm in its
+current state.  Use the spherical control to move the arm to a new position and press the "plan and execute"
+button.  You should see the arm move from its current state to the desired goal.
+
+
+Appendix: Additional Customization
+-----------------------------------
+
+The default driver bringup assumes that the robot is in a mostly-stock state.  It is possible that your robot
+includes additional sensors and payloads that the arm could collide with.
+
+The ``dingo_manipulation`` package includes additional documentation for customizing the ``moveit`` configuration
+for the arm: https://github.com/dingo-cpr/dingo_manipulation
