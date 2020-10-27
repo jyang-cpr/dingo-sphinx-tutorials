@@ -15,12 +15,27 @@ your robot and install the appropriate drivers.
 Physical Installation
 ------------------------
 
-.. note::
-
-  This section is still in-progress; we will add more details & pictures in the near future
-
 First, power off the robot and install the arm.  The arm's power regulator can be placed inside one of the
 extra payload bays on the Dingo-O.  On Dingo-D the power regulator must be mounted to the outside of the robot.
+
+.. image:: images/dingo_gen3_lite_internals.jpg
+  :alt: The power regulator mounted to the outside of Dingo-D
+
+Connect the input power to the Gen3 Lite's power regulator to the VBAT connector on Dingo's MCU:
+
+.. image:: images/dingo_gen3_lite_mcu_power.jpg
+  :alt: the VBAT connector on the Dingo-D MCU
+
+Connect the output power from the Gen3 Lite's power cable.
+
+.. image:: images/gen3_lite_power_regulator.jpg
+  :alt: Input & output of the Gen3 Lite's power regulator
+
+Connect the MicroUSB port of the Gen3 Lite to an open USB port on the Dingo's computer and connect the Gen3 Lite's
+power cable to the port on the arm's base.
+
+.. image:: images/gen3_lite_external.jpg
+  :alt: Gen3 Lite's base with power and USB connections.
 
 
 Network Confguration
@@ -164,9 +179,28 @@ launch rviz:
   This assumes you have :doc:`configured your network <network>` correctly to allow remote rviz connections
 
 In rviz, add the Mobile Manipulation topic.  After a moment you should see the robot with the arm in its
-current state.  Use the spherical control to move the arm to a new position and press the "plan and execute"
+current state.
+
+.. image:: images/rviz-motion-add-motion-planning.png
+  :alt: Add the Motion Planning topic to Rviz
+
+Use the spherical control to move the arm to a new position and press the "plan and execute"
 button.  You should see the arm move from its current state to the desired goal.
 
+.. image:: images/rviz-motion-planning.png
+  :alt: Moveit motion planning in Rviz
+
+The ``dingo_gen3_lite_moveit_config`` package includes 2 default poses for the arm: ``vertical`` which sets all the
+joint positions to 0 (which will point the arm straight up in the air) and ``stow`` which will fold the arm up into
+a safe, compact position for travel.  Additional poses can be created by running
+
+.. code-block:: bash
+
+  roslaunch dingo_gen3_lite_moveit_config setup_assistant.launch
+
+Refer to the ``dingo_manupulation`` documentation on GitHub_ for more information on adding additional static poses.
+
+.. _GitHub: https://github.com/dingo-cpr/dingo_manipulation
 
 Appendix: Additional Customization
 -----------------------------------
