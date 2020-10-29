@@ -133,16 +133,33 @@ environment variable.  Edit ``/etc/ros/setup.bash`` and add the following to the
   # add the gen3 lite description to the URDF
   export DINGO_URDF_EXTRAS=$(catkin_find dingo_kinova_description urdf/dingo_gen3_lite_description.urdf.xacro --first-only)
 
-This will mount the arm to the ``mid_mount`` link on the robot's chassis.  To apply an offset and/or rotation, set
-the ``DINGO_ARM_XYZ`` and ``DINGO_ARM_RPY`` environment variables.  See :doc:`Dingo Description <description>`
-for a summary of all available environment variables.
-
 If your robot already has a ``DINGO_URDF_EXTRAS`` then simply include the ``dingo_gen3_lite_description.urdf.xacro``
 file in it:
 
 .. code-block:: xml
 
   <include filename="$(find dingo_kinova_description)/urdf/dingo_gen3_lite_description.urdf.xacro" />
+
+This will mount the arm to the ``front_b_mount`` link on the robot's chassis.  To apply an offset and/or rotation, set
+the ``DINGO_ARM_XYZ`` and ``DINGO_ARM_RPY`` environment variables.  See :doc:`Dingo Description <description>`
+for a summary of all available environment variables.  To use a different mounting location, set the ``DINGO_ARM_MOUNT``
+environment variable.  The following links are defined in the Dingo-O and Dingo-D URDFs and may be used as mounting points:
+
+===================== ========== ==========
+Link (front to back)  Dingo-D    Dingo-O
+===================== ========== ==========
+``front_mount``       Yes        Yes
+``front_b_mount``     Yes        Yes
+``front_c_mount``     Yes        Yes
+``mid_mount``         No         Yes
+``rear_c_mount``      Yes        Yes
+``rear_b_mount``      Yes        Yes
+``rear_mount``        Yes        Yes
+===================== ========== ==========
+
+If your arm's power regulator is externally mounted, as will likely be the case for Dingo-D, you may add this to the
+model by setting the ``DINGO_ARM_EXTERNAL_POWER`` environment variable to 1.  By default the external power will be
+mounted to the ``rear_b_mount`` link.
 
 To verify that your model is correct you can use ``roslaunch dingo_viz view_model.launch``.  You should see the arm
 sticking straight up in the air:

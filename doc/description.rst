@@ -15,6 +15,43 @@ This package provides a `URDF <http://wiki.ros.org/urdf>`_ model of Dingo.  For 
   :alt: Dingo model
 
 
+Mounting Points
+-----------------
+
+Dingo-D has 6 evenly-spaced mounting points along its center channel for mounting sensors and other accessories.  Dingo-O
+has 7 similar mounting points.  The centers of these mounting points are represented as links in the URDF to facilitate
+adding sensors to simulated robots & modelling collisions when planning arm motions for mobile manipulation.
+
+====================== ========== ==========
+Link (front to back)   Dingo-D    Dingo-O
+====================== ========== ==========
+``front_mount``        Yes        Yes
+``front_b_mount``      Yes        Yes
+``front_c_mount``      Yes        Yes
+``mid_mount``          No         Yes
+``rear_c_mount``       Yes        Yes
+``rear_b_mount``       Yes        Yes
+``rear_mount``         Yes        Yes
+====================== ========== ==========
+
+Dingo-D mount points:
+
+.. image:: images/dingo-d-mounts.png
+  :alt: Dingo-D mount points
+
+Dingo-O mount points:
+
+.. image:: images/dingo-o-mounts.png
+  :alt: Dingo-O mount points
+
+Both versions of Dingo also provide a ``front_bumper_mount``, located directly on the front of the robot.  While the physical
+robot does not have any mounting holes here, lightweight sensors (e.g. small cameras) can be placed here using double-sided
+adhesive if required.
+
+.. image:: images/dingo-d-front_bumper_mount.png
+  :alt: front_bumper_mount
+
+
 Environment Variables
 -----------------------
 
@@ -131,6 +168,19 @@ summary of their effects and default values
       <td><p><tt>0 0 0</tt> </p></td>
       <td><p>RPY offset for Dingo's RealSense</p></td>
     </tr>
+    </tbody></table>
+
+Mobile Manipulaton Environment Variables
+-------------------------------------------
+
+The following variables are only supported when the :doc:`mobile manipulation <manipulation>` package is in-use.
+
+.. raw:: html
+
+    <table><tbody><tr><td><p><strong>Variable</strong> </p></td>
+      <td><p><strong>Default</strong> </p></td>
+      <td><p><strong>Description</strong> </p></td>
+    </tr>
     <!--
       Arm Configuration
     -->
@@ -146,17 +196,37 @@ summary of their effects and default values
       <td><p><tt>6</tt> </p></td>
       <td><p>The number of degrees of freedom in the arm</p></td>
     </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_MOUNT</tt> </p></td>
+      <td><p><tt>front_b_mount</tt> </p></td>
+      <td><p>Specifies the link that the arm is attached to in the URDF</p></td>
+    </tr>
     <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_XYZ</tt> </p></td>
       <td><p><tt>0 0 0</tt> </p></td>
-      <td><p>XYZ offset for Dingo's arm relative to <tt>mid_mount</tt></p></td>
+      <td><p>XYZ offset for Dingo's arm relative to its mounting point</p></td>
     </tr>
     <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_RPY</tt> </p></td>
       <td><p><tt>0 0 0</tt> </p></td>
-      <td><p>RPY offset for Dingo's arm relative to <tt>mid_mount</tt></p></td>
+      <td><p>RPY offset for Dingo's arm relative to its mounting point</p></td>
     </tr>
     <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_HOST</tt> </p></td>
       <td><p><tt>192.168.131.40</tt> </p></td>
       <td><p>IP address of the Dingo's arm</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_EXTERNAL_POWER</tt> </p></td>
+      <td><p><tt>0</tt> </p></td>
+      <td><p>Set to 1 to add the arm's power regulator to the robot's URDF</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_EXTERNAL_POWER_MOUNT</tt> </p></td>
+      <td><p><tt>rear_b_mount</tt> </p></td>
+      <td><p>Specifies the link the external power regulator is attached to</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_EXTERNAL_POWER_XYZ</tt> </p></td>
+      <td><p><tt>0 0 0</tt> </p></td>
+      <td><p>The XYZ offset for the external power regulator relative to its mount point</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_ARM_EXTERNAL_POWER_RPY</tt> </p></td>
+      <td><p><tt>0 0 0</tt> </p></td>
+      <td><p>The RPY offset for the external power regulator relative to its mount point</p></td>
     </tr>
     </tbody></table>
 
