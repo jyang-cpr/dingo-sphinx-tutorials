@@ -89,3 +89,42 @@ And in the second one, run:
   rostopic echo /bluetooth_teleop/joy
 
 As with ``jstest``, you should see the buttons and axes update as you use the controller.
+
+
+Other Controllers
+------------------
+
+Both the physical Dingo and :doc:`simulated dingos <simulation>` can be used with other game controllers, including the
+Logitech F710 and Xbox One controller.  These controllers will not pair using the ``ds4drv-pair`` command.
+
+The F710 should pair automatically when powered on and the USB dongle is inserted into an available USB port.  The
+controller will show up as ``/dev/input/js*`` where ``*`` is a number starting at zero.
+
+The Xbox One controller can be paired using the ``sudo bluetoothctl`` command:
+
+.. code-block:: bash
+
+  $ sudo bluetoothctl
+  agent on
+  scan on
+
+Place your controller in pairing mode and look for "Xbox One Wireless Controller" to appear.  Copy its MAC address
+(e.g. ``11:22:33:44:55:66``) and enter the following commands into the ``bluetoothct`` prompt, substituting the device's
+MAC address:
+
+.. code-block:: bash
+
+  scan off
+  trust 11:22:33:44:55:66
+  connect 11:22:33:44:55:66
+
+As with the F710, the controller should appear as ``/dev/input/js*`` in Ubuntu.
+
+To use your controller with Dingo, set the ``DINGO_JOY_DEV`` environment variable to point to your device, for example:
+
+.. code-block:: bash
+
+  export DINGO_JOY_DEV=/dev/input/js0
+
+On a physical robot, add the above command to ``/etc/ros/setup/bash``.  On a computer you are using for simulating Dingo,
+add that command to the end of ``$HOME/.bashrc``.

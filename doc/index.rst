@@ -47,6 +47,7 @@ Additional topics coming soon!
     controllers
     network
     manipulation
+    driving
 
 .. toctree::
     :titlesonly:

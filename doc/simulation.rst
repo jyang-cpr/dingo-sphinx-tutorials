@@ -123,25 +123,6 @@ Once you start your own development, have your nodes send ``geometry_msgs/Twist`
 topic to drive Dingo, either real or simulated. This is the standard ROS interface to differential-drive and
 holonomic ground vehicles.
 
-Finally, you can also use a game controller to drive Dingo in either the real world or in the simulation.  Dingo ships
-with a PS4 controller that is pre-configured to pair with the robot.  For a simulation you must pair the controller
-with your PC.  See :doc:`controllers` for information on how to pair your PS4 controller.
-
-Once the controller is paired, you can drive Dingo by holding the left shoulder button (L1) and using the left joystick.
-Moving the joystick up and down will make the robot drive forwards and backwards, while moving it left and right will
-cause the robot to turn.  Holding the right shoulder button (R1) will enable turbo mode, increasing the robot's top
-speed.
-
-.. Warning::
-
-  Dingo can move fast enough to cause physical damage to itself or its surroundings if driven irresponsibly.
-
-  We strongly recommend driving in normal (slow) mode first, and only enabling turbo in large, open areas that are free
-  of people and obstacles.
-
-  When driving a physical robot always make sure you have a clear line of sight to the robot.  In case of emergency,
-  release both L1 and R1 on the controller to stop the robot immediately.
-
 
 Driving Dingo-O
 ----------------
@@ -155,9 +136,21 @@ The omni-directional Dingo-O model can be controlled in exactly the same way was
 The red arrows and blue ring control the robot's forward velocity and turning, as described above.  The green arrows
 control the robot's sideways movement.
 
-Driving Dingo-O with the PS4 controller uses the left joystick to control the robot's forward/backward and left/right
-movement, while the right joystick controls the robot's turning.  Just like Dingo-D, Dingo-O supports turbo mode by
-holding R1 while driving.
+
+Game Controllers and Gazebo
+-------------------------------
+
+You can also use a game controller to drive your robot in Gazebo.  To set up your computer for teleop using the game controller
+follow these steps:
+
+1.  Connect the controller to your PC.
+
+2.  Set the ``DINGO_JOY_DEV`` environment variable to point to your game controller device.  Normally this will be ``/dev/input/js0``.
+
+3.  Launch gazebo as described above.
+
+Controls for driving the robot can be found in :doc:`Driving Dingo <driving>`.  See :doc:`Controller Pairing <controllers>`
+for additional information on how to pair your controller with your computer, or refer to the manufacturer's instructions.
 
 
 Visualizing Sensors
