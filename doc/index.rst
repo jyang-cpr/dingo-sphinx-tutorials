@@ -43,11 +43,20 @@ Additional topics coming soon!
     Overview <self>
     simulation
     additional_sim_worlds
+    computer_installation
+    software_setup
     navigation
     controllers
     network
     manipulation
     driving
+
+.. toctree::
+    :maxdepth: 0
+    :caption: NVIDIA Jetson
+
+    jetson_nano
+    jetson_xavier
 
 .. toctree::
     :titlesonly:
