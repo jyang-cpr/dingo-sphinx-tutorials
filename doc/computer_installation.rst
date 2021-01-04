@@ -9,8 +9,8 @@ see :doc:`Software Setup <software_setup>`.
 
 .. note::
 
-  For installing the OS on an Nvidia Jetson device, see :doc:<Jetson Xavier AGX `jetson_xavier`> or
-  :doc:<Jetson Nano `jetson_nano`>.
+  For installing the OS on an Nvidia Jetson device, see :doc:`Jetson Xavier AGX <jetson_xavier>` or
+  :doc:`Jetson Nano <jetson_nano>`.
 
 
 Supported PCs

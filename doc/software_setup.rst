@@ -9,8 +9,8 @@ Creating OS installation media
 
 .. note::
 
-  For installing the OS on an Nvidia Jetson device, see :doc:<Jetson Xavier AGX `jetson_xavier`> or
-  :doc:<Jetson Nano `jetson_nano`>.
+  For installing the OS on an Nvidia Jetson device, see :doc:`Jetson Xavier AGX <jetson_xavier>` or
+  :doc:`Jetson Nano <jetson_nano>`.
 
 For Intel-family computers (``amd64`` architecture), you can download Clearpath's official OS installation images
 from `here <https://packages.clearpathrobotics.com/stable/images/latest/>`_.  For Dingo, use the ``bionic-melodic``
