@@ -36,6 +36,20 @@ We recommend the following minimum requirements for any custom PC installed in D
 * At least 1 physical ethernet port
 
 
+Mounting the PC
+----------------
+
+Mini-ITX format PCs, as well as the Nvidia Jetson family can be mounted directly to Dingo's chassis using the provided
+mounting holes.  We recommend using 20-30mm standoffs to ensure adequate clearance between the chassis and any ports
+on the board.
+
+Small single-board PCs, such as the Raspberry Pi can be installed by either creating a custom 3d-printed bracket to make
+use of the existing mounting holes, or be affixed to the computer bay using adhesive on a third-party enclosure.
+
+During OS installation you will need access to the USB, ethernet, and video ports of the PC.  After installation
+the PC will need to be connected to the MCU via an ethernet cable.
+
+
 Powering the PC
 ----------------
 
@@ -47,6 +61,17 @@ For other PCs that require specific input voltages, AUX1-3 on the MCU supply the
 * AUX1: 12/14V unregulated (same as VBATT)
 * AUX2: 12V regulated
 * AUX3: 5V regulated
+
+PWR1 and PWR2 are normally reserved for the motors' CAN controllers.  They are wired as follows:
+
+======  ========
+Pin #   Pinout
+======  ========
+1       12V
+2       5V
+3       gnd
+4       gnd
+======  ========
 
 Check your computer's power requirements and connect its power to the appropriate power supply.
 
