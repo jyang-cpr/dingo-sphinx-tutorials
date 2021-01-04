@@ -39,9 +39,16 @@ We recommend the following minimum requirements for any custom PC installed in D
 Powering the PC
 ----------------
 
-.. warning::
+Mini-ITX motherboards can be powered by connecting a pico-PSU directly to VBATT.  This will feed power directly from
+the batteries to the motherboard.
 
-  TODO
+For other PCs that require specific input voltages, AUX1-3 on the MCU supply the following voltages:
+
+* AUX1: 12/14V unregulated (same as VBATT)
+* AUX2: 12V regulated
+* AUX3: 5V regulated
+
+Check your computer's power requirements and connect its power to the appropriate power supply.
 
 
 Installing a network switch
@@ -50,6 +57,4 @@ Installing a network switch
 Because many sensors use ethernet connectivity you may find it useful to install a small ethernet switch inside Dingo's
 main center bay.
 
-.. warning::
-
-  TODO
+Power for the switch should be drawn from AUX2 or AUX3, as dictated by the switch's input voltage (see above).
