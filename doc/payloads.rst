@@ -55,7 +55,6 @@ Link (front to back)   Dingo-D    Dingo-O
 ``mid_mount``          No         Yes
 ``rear_c_mount``       Yes        Yes
 ``rear_b_mount``       Yes        Yes
-Lightweight payloads can also be attached directly to the fenders or yellow top cover plates using adhesive if desired.
 ``rear_mount``         Yes        Yes
 ====================== ========== ==========
 
