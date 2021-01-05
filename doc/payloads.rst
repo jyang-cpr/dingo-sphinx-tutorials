@@ -37,7 +37,15 @@ Pin #   Pinout   Current Limit
 4       gnd
 ======  ======== ======================
 
-To access the MCU's power supplies remove the center channel covers.
+.. image:: images/mcu.jpg
+  :alt: Dingo's MCU
+
+The image above shows Dingo's MCU. ``PWR1`` and ``PWR2`` are the large white connectors in the middle.  The 3 black
+connectors below them are ``AUX1-3``.  ``VBATT`` is the large, black, 2-pin connector located near at the bottom, near
+the 10A and 20A fuses.
+
+To access the MCU, remove Dingo's rear center channel cover.  Note that there will be several cables connected already
+to provide power to the motors, computer, and any other payloads already installed.
 
 
 Mounting Payloads
@@ -59,19 +67,6 @@ Link (front to back)   Dingo-D    Dingo-O
 ====================== ========== ==========
 
 See :doc:`dingo_description <description>` for more information about Dingo's URDF
-
-
-USB-Only Payloads
-------------------
-
-Many sensors, such as IMUs, color and depth-sensing cameras, and even some lidars can operate by simply connecting
-them to an appropriate USB2 or USB3 port on Dingo's PC.
-
-
-Ethernet Payloads
-------------------
-
-Many modern sensors use ethernet connectivity instead of USB for providing data.
 
 
 Mobile Manipulation

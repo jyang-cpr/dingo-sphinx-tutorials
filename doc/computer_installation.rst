@@ -75,6 +75,12 @@ Check your computer's power requirements and connect its power to the appropriat
 Note that the computer should not be connected to any of the ``AUX`` power supplies.  These are intended to supply
 power to accessories such as sensors and lightweight arms that require external power.
 
+.. image:: images/mcu.jpg
+  :alt: Dingo's MCU
+
+The image above shows Dingo's MCU. ``PWR1`` and ``PWR2`` are the large white connectors in the middle.  The 3 black
+connectors below them are ``AUX1-3``.  ``VBATT`` is the large, black, 2-pin connector located near at the bottom, near
+the 10A and 20A fuses.
 
 Installing a network switch
 ----------------------------
