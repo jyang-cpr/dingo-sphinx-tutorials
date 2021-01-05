@@ -45,6 +45,7 @@ Additional topics coming soon!
     additional_sim_worlds
     computer_installation
     software_setup
+    payloads
     navigation
     controllers
     network

@@ -53,27 +53,27 @@ the PC will need to be connected to the MCU via an ethernet cable.
 Powering the PC
 ----------------
 
-Mini-ITX motherboards can be powered by connecting a pico-PSU directly to VBATT.  This will feed power directly from
-the batteries to the motherboard.
+Dingo's PC should be powered by connecting it directly to ``VBATT`` if it is tolerant to varying voltage (e.g.
+a mini-ITX format PC with a pico-PSU), or to one of ``PWR1`` or ``PWR1``.
 
-For other PCs that require specific input voltages, AUX1-3 on the MCU supply the following voltages:
+``VBATT`` provides unregulated power drawn directly from Dingo's batteries.  At full charge this will be 12-14V, and
+can be expected to decline steadily as the robot is used.
 
-* AUX1: 12/14V unregulated (same as VBATT)
-* AUX2: 12V regulated
-* AUX3: 5V regulated
+``PWR1`` and ``PWR2`` can provide regulated 12V or 5V output by using the following pin mappings:
 
-PWR1 and PWR2 are normally reserved for the motors' CAN controllers.  They are wired as follows:
-
-======  ========
-Pin #   Pinout
-======  ========
-1       12V
-2       5V
+======  ======== ======================
+Pin #   Pinout   Current Limit
+======  ======== ======================
+1       12V      10A total, 8A per pin
+2       5V       5A
 3       gnd
 4       gnd
-======  ========
+======  ======== ======================
 
 Check your computer's power requirements and connect its power to the appropriate power supply.
+
+Note that the computer should not be connected to any of the ``AUX`` power supplies.  These are intended to supply
+power to accessories such as sensors and lightweight arms that require external power.
 
 
 Installing a network switch

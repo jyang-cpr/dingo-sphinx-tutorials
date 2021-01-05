@@ -1,0 +1,82 @@
+Adding Payloads
+================
+
+Dingo's base platform does not include any sensors by default, though Dingo can support a wide array of ROS-capable
+peripherals.
+
+This section is not intended to be an exhaustive list of all supported payloads, but rather offer general guidance
+on how payloads should be connected to the robot.
+
+
+Powering Payloads
+------------------
+
+Many payloads, such as sensors, arms, and network switches require external power.  Dingo's MCU is equipped with
+3 auxiliary outputs which can be used to power these payloads:
+
+======  ======================  =======================
+AUX #   Voltage                 Current Limit
+======  ======================  =======================
+AUX1    12-14V (unregulated)    20A
+AUX2    12V (regulated)         10A total, 8A per pin
+AUX3    5V (regulated)          5A
+======  ======================  =======================
+
+``AUX1`` is connected directly to Dingo's batteries, like ``VBATT``.  This will provide 12-14V when the batteries are
+fully-charged, but can be expected to drop steadily as the robot is used.  Payloads that are not tolerant to variable
+input voltage should not be connected to ``AUX1``.
+
+Payloads may also be connected to ``PWR1`` or ``PWR2``:
+
+======  ======== ======================
+Pin #   Pinout   Current Limit
+======  ======== ======================
+1       12V      10A total, 8A per pin
+2       5V       5A
+3       gnd
+4       gnd
+======  ======== ======================
+
+To access the MCU's power supplies remove the center channel covers.
+
+
+Mounting Payloads
+------------------
+
+The center channel covers of Dingo-O and Dingo-D feature multiple mounting points for payloads.  Each mounting point is
+a square 80mm mount with 4 M5 threaded holes in the corners.  These mounting points are accessible through Dingo's URDF:
+
+====================== ========== ==========
+Link (front to back)   Dingo-D    Dingo-O
+====================== ========== ==========
+``front_mount``        Yes        Yes
+``front_b_mount``      Yes        Yes
+``front_c_mount``      Yes        Yes
+``mid_mount``          No         Yes
+``rear_c_mount``       Yes        Yes
+``rear_b_mount``       Yes        Yes
+Lightweight payloads can also be attached directly to the fenders or yellow top cover plates using adhesive if desired.
+``rear_mount``         Yes        Yes
+====================== ========== ==========
+
+See :doc:`dingo_description <description>` for more information about Dingo's URDF
+
+
+USB-Only Payloads
+------------------
+
+Many sensors, such as IMUs, color and depth-sensing cameras, and even some lidars can operate by simply connecting
+them to an appropriate USB2 or USB3 port on Dingo's PC.
+
+
+Ethernet Payloads
+------------------
+
+Many modern sensors use ethernet connectivity instead of USB for providing data.
+
+
+Mobile Manipulation
+--------------------
+
+Dingo can be equipped with a Kinova Gen3 Lite arm to provide mobile manipulation.  Please see
+:doc:`Mobile Manipulation <manipulation>` for more information on how to install and configure the arm.
