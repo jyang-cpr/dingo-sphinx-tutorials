@@ -6,18 +6,21 @@ Step 1: Open up Dingo
 
 Start by removing Dingo's side panels, yellow cover plates, and removing the center channel covers.
 
-.. image:: images/placeholder.png
+.. image:: images/center-channel.jpg
+  :alt: Dingo's center channel
 
 Step 2: Install the Nano
 ------------------------
 
 Dingo includes pre-threaded mounting holes for the Jetson Nano.  We recommend using 20mm standoffs to raise the board.
 
-.. image:: images/placeholder.png
+.. image:: images/computer-bay.jpg
+  :alt: Dingo's computer bay
 
 Connect the Jetson's power cable to the 12V output from Dingo's MCU.
 
-.. image:: images/placeholder.png
+.. image:: images/installed-jetson-nano.jpg
+  :alt: A Jetson Nano installed inside Dingo
 
 The ethernet port on the Nano will eventually need to be connected to the ethernet port of Dingo's MCU.  If you have
 a network switch installed you can connect the MCU and the Nano to the switch.  Otherwise leave the MCU disconnected

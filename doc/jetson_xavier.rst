@@ -6,14 +6,16 @@ Step 1: Open up Dingo
 
 Start by removing Dingo's side panels, yellow cover plates, and removing the center channel covers.
 
-.. image:: images/placeholder.png
+.. image:: images/center-channel.jpg
+  :alt: Dingo's center channel
 
 Step 2: Install the Xavier
 --------------------------
 
 Dingo includes pre-threaded mounting holes for the Jetson Nano.  We recommend using 20mm standoffs to raise the board.
 
-.. image:: images/placeholder.png
+.. image:: images/computer-bay.jpg
+  :alt: Dingo's computer bay
 
 Connect the Jetson's power cable to the 12V output from Dingo's MCU.
 
