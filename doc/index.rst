@@ -42,17 +42,24 @@ Additional topics coming soon!
 
     Overview <self>
     simulation
-    additional_sim_worlds
-    computer_installation
     software_setup
-    payloads
     navigation
     controllers
     network
-    manipulation
     driving
+    human_machine_interface
 
 .. toctree::
+    :titlesonly:
+    :maxdepth: 0
+    :caption: Hardware Customization
+
+    computer_installation
+    payloads
+    manipulation
+
+.. toctree::
+    :titlesonly:
     :maxdepth: 0
     :caption: NVIDIA Jetson
 
@@ -65,3 +72,4 @@ Additional topics coming soon!
     :caption: Dingo Packages
 
     description
+    additional_sim_worlds

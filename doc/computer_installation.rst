@@ -43,6 +43,19 @@ Mini-ITX format PCs, as well as the Nvidia Jetson family can be mounted directly
 mounting holes.  We recommend using 20-30mm standoffs to ensure adequate clearance between the chassis and any ports
 on the board.
 
+Dingo-D has a single payload bay for the computer, opposite the battery bay.  Dingo-O has two computer bays, located in
+front of the two battery bays.
+
+|DIFF_PAYLOAD| |OMNI_PAYLOAD|
+
+.. |DIFF_PAYLOAD| image:: images/dingo-d_payload.jpg
+  :alt: Dingo-D's payload bays
+  :width: 45%
+
+.. |OMNI_PAYLOAD| image:: images/dingo-o_payload.jpg
+  :alt: Dingo-O's payload bays
+  :width: 45%
+
 Small single-board PCs, such as the Raspberry Pi can be installed by either creating a custom 3d-printed bracket to make
 use of the existing mounting holes, or be affixed to the computer bay using adhesive on a third-party enclosure.
 
