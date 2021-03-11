@@ -85,11 +85,11 @@ summary of their effects and default values
       <td><p>Specifies what pre-made sensor/mission configuration to load (see below)</p></td>
     </tr>
     <!--
-      LIDAR Sensors
+      Primary LIDAR Sensors
     -->
     <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER</tt> </p></td>
       <td><p><tt>0</tt> </p></td>
-      <td><p>Set to 1 to equip Dingo with a lidar unit</p></td>
+      <td><p>Set to 1 to equip Dingo with a primary lidar unit, normally front-facing</p></td>
     </tr>
     <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_MODEL</tt> </p></td>
       <td><p><tt>lms1xx</tt> </p></td>
@@ -106,9 +106,9 @@ summary of their effects and default values
       <td>
         <p>Defines the mount point the Dingo's laser is connected to.  Allowed values are:</p>
         <ul>
-          <li><tt>front</tt></li>
-          <li><tt>mid</tt></li>
-          <li><tt>rear</tt></li>
+          <li><tt>front[_b|_c]</tt></li>
+          <li><tt>mid</tt> (Dingo-O only)</li>
+          <li><tt>rear[_b|_c]</tt></li>
         </ul>
       </td>
     </tr>
@@ -123,6 +123,86 @@ summary of their effects and default values
     <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_RPY</tt> </p></td>
       <td><p><tt>0 0 0</tt> </p></td>
       <td><p>RPY offset for Dingo's lidar</p></td>
+    </tr>
+    <!--
+      Secondary LIDAR (ARK)
+    -->
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_SECONDARY</tt> </p></td>
+      <td><p><tt>0</tt> </p></td>
+      <td><p>Set to 1 to equip Dingo with a secondary lidar unit, normally rear-facing</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_SECONDARY_MODEL</tt> </p></td>
+      <td><p><tt>lms1xx</tt> </p></td>
+      <td>
+        <p>Sets the model of secondary lidar sensor on the robot. Ignored if <tt>DINGO_LASER_SECONDARY</tt> is <tt>0</tt>.  Allowed values are:</p>
+        <ul>
+          <li><tt>lms1xx</tt> - Sick LMS-1xx (default)</li>
+          <li><tt>ust10</tt> - Hokuyo UST-10</li>
+        </ul>
+      </td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_SECONDARY_MOUNT</tt> </p></td>
+      <td><p><tt>rear</tt> </p></td>
+      <td>
+        <p>Defines the mount point the Dingo's secondary laser is connected to.  Allowed values are:</p>
+        <ul>
+          <li><tt>front[_b|_c]</tt></li>
+          <li><tt>mid</tt> (Dingo-O only)</li>
+          <li><tt>rear[_b|_c]</tt></li>
+        </ul>
+      </td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_SECONDARY_TOPIC</tt> </p></td>
+      <td><p><tt>rear/scan</tt> </p></td>
+      <td><p>The ROS topic that Dingo's secondary lidar publishes on</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_SECONDARY_OFFSET</tt> </p></td>
+      <td><p><tt>-0.11 0 0</tt> </p></td>
+      <td><p>XYZ offset for Dingo's secondary lidar</p></td>
+    </tr
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_SECONDARY_RPY</tt> </p></td>
+      <td><p><tt>0 0 3.14159</tt> </p></td>
+      <td><p>RPY offset for Dingo's secondary lidar</p></td>
+    </tr>
+    <!--
+      3D LIDAR
+    -->
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_3D</tt> </p></td>
+      <td><p><tt>0</tt> </p></td>
+      <td><p>Set to 1 to equip Dingo with a primary 3D lidar unit, normally front-facing</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_3D_MODEL</tt> </p></td>
+      <td><p><tt>vlp16</tt> </p></td>
+      <td>
+        <p>Sets the model of lidar sensor on the robot. Ignored if <tt>DINGO_LASER_3D</tt> is <tt>0</tt>.  Allowed values are:</p>
+        <ul>
+          <li><tt>vlp16</tt> - Velodyne VLP-16 (default)</li>
+          <li>No other models supported yet, but may be expanded in future</li>
+        </ul>
+      </td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_3D_MOUNT</tt> </p></td>
+      <td><p><tt>front</tt> </p></td>
+      <td>
+        <p>Defines the mount point the Dingo's 3D laser is connected to.  Allowed values are:</p>
+        <ul>
+          <li><tt>front[_b|_c]</tt></li>
+          <li><tt>mid</tt> (Dingo-O only)</li>
+          <li><tt>rear[_b|_c]</tt></li>
+        </ul>
+      </td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_3D_TOPIC</tt> </p></td>
+      <td><p><tt>front/points</tt> </p></td>
+      <td><p>The ROS topic that Dingo's 3D lidar publishes on</p></td>
+    </tr>
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_3D_OFFSET</tt> </p></td>
+      <td><p><tt>0 0 0</tt> </p></td>
+      <td><p>XYZ offset for Dingo's 3D lidar</p></td>
+    </tr
+    <tr><td><span class="anchor" id="line-11"></span><p><tt>DINGO_LASER_3D_RPY</tt> </p></td>
+      <td><p><tt>0 0 0</tt> </p></td>
+      <td><p>RPY offset for Dingo's 3D lidar</p></td>
     </tr>
     <!--
       RealSense Sensors
