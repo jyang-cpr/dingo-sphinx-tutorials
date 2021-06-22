@@ -21,7 +21,7 @@ set up on your Ubuntu desktop, and install the Dingo-specific metapackages for d
 .. code-block:: bash
 
   mkdir -p ~/catkin_ws/src
-  cd ~/catkin_src
+  cd ~/catkin_ws
   catkin_init_workspace src
   cd src
   git clone https://github.com/dingo-cpr/dingo.git
