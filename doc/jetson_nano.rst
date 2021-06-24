@@ -17,7 +17,7 @@ Dingo includes pre-threaded mounting holes for the Jetson Nano.  We recommend us
 .. image:: images/computer-bay.jpg
   :alt: Dingo's computer bay
 
-Connect the Jetson's power cable to the 12V output from Dingo's MCU.
+Connect the Jetson's power cable to the 5V output from Dingo's MCU.
 
 .. image:: images/installed-jetson-nano.jpg
   :alt: A Jetson Nano installed inside Dingo
