@@ -177,7 +177,7 @@ run the folliwing commands:
 
 .. code-block:: bash
 
-  roslaunch dingo_kinva_bringup dingo_gen3_lite_bringup.launch
+  roslaunch dingo_kinova_bringup dingo_gen3_lite_bringup.launch
 
 .. code-block:: bash
 
