@@ -42,7 +42,7 @@ Network Confguration
 ---------------------
 
 The Kinova Gen3 Lite does not support configuring the IP address of the arm; the arm always communicates via
-ethernet-over-USB with address ``192.168.0.10``.  To configure Dingo to communicate with the arm, first connect the
+ethernet-over-USB with address ``192.168.1.10``.  To configure Dingo to communicate with the arm, first connect the
 micro-USB cable between the arm and an empty USB port on your robot's PC.  Run ``dmesg`` -- you should see the USB
 connection identified as an ethernet device and assigned a network device identifier like ``usb0``,
 ``enx8c04ba888725` or ``enp0s20u9`` -- the exact ID will vary based on the motherboard and the OS configuration.
@@ -62,7 +62,7 @@ Then add a new interface to the bridge by adding this to the same file:
     auto br0:1
     allow-hotplug br0:1
     iface br0:1 inet static
-      address 192.168.0.1
+      address 192.168.1.1
       netmask  255.255.255.0
 
 
