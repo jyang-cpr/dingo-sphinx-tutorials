@@ -41,35 +41,29 @@ power cable to the port on the arm's base.
 Network Confguration
 ---------------------
 
-By default the Gen3 Lite runs a DHCP server accessible over the micro-USB cable.  The arm's default IP address is
-192.168.1.10.  Kinova provides a web interface for configuring the robot's network.  We recommend modifying the
-default configuration to set a static IP address on the robot's internal 192.168.131.* address space.  This is
-not required, but it may simplify setting up the driver.
+The Kinova Gen3 Lite does not support configuring the IP address of the arm; the arm always communicates via
+ethernet-over-USB with address ``192.168.0.10``.  To configure Dingo to communicate with the arm, first connect the
+micro-USB cable between the arm and an empty USB port on your robot's PC.  Run ``dmesg`` -- you should see the USB
+connection identified as an ethernet device and assigned a network device identifier like ``usb0``,
+``enx8c04ba888725` or ``enp0s20u9`` -- the exact ID will vary based on the motherboard and the OS configuration.
 
-If you choose to assign the arm a static IP address, modify ``/etc/network/interfaces`` to add the ``usb*`` interfaces
-to the network bridge.  Change
-
-.. code-block:: bash
-
-  bridge_ports regex (eth.*)|(en.*)
-
-to:
+Modify ``/etc/network/interfaces`` to add the USB ethernet device to the ``br0`` bridge, for example, if the device
+showed up as ``usb0``:
 
 .. code-block:: bash
 
-  bridge_ports regex (eth.*)|(en.*)|(usb.*)
+    bridge_ports regex (eth.*)|(en.*)|(usb.*)
 
-If instead you wish to keep the robot's DHCP server running and use the default IP address from the arm, add the
-following to ``/etc/network/interfaces``:
+Then add a new interface to the bridge by adding this to the same file:
 
 .. code-block:: bash
 
-  auto usb0
-  allow-hotplug usb0
-  iface usb0 inet dhcp
-
-This will automatically assign an IP address to the robot's ``usb0`` network interface and allow the robot to
-communicate with the arm.
+    # Static interface for communicating with the Gen3 Lite arm
+    auto br0:1
+    allow-hotplug br0:1
+    iface br0:1 inet static
+      address 192.168.0.1
+      netmask  255.255.255.0
 
 
 Driver Installation
