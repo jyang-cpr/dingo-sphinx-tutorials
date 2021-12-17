@@ -133,3 +133,54 @@ run:
 .. code-block:: bash
 
     rqt
+
+
+Reconfiguring the Network Bridge
+---------------------------
+
+In the unlikely event you must modify Dingo's ethernet bridge, you can do so by editing the Netplan configuration file
+found at ``/etc/netplan/50-clearpath-bridge.yaml``:
+
+.. code-block:: yaml
+
+    # Configure the wired ports to form a single bridge
+    # We assume wired ports are en* or eth*
+    # This host will have address 192.168.131.1
+    network:
+    version: 2
+    renderer: networkd
+    ethernets:
+    bridge_eth:
+      dhcp4: no
+      dhcp6: no
+      match:
+        name: eth*
+    bridge_en:
+      dhcp4: no
+      dhcp6: no
+      match:
+        name: en*
+    bridges:
+    br0:
+      dhcp4: yes
+      dhcp6: no
+      interfaces: [bridge_en, bridge_eth]
+      addresses:
+        - 192.168.131.1/24
+
+This file will create a bridged interface called ``br0`` that will have a static address of 192.168.131.1, but will
+also be able to accept a DHCP lease when connected to a wired router.  By default all network ports named ``en*`` and
+``eth*`` are added to the bridge.  This includes all common wired port names, such as:
+
+- ``eth0``
+- ``eno1``
+- ``enx0123456789ab``
+- ``enp3s0``
+- etc...
+
+To include/exclude additional ports from the bridge, edit the ``match`` fields, or add additional ``bridge_*`` sections
+with their own ``match`` fields, and add those interfaces to the ``interfaces: [bridge_en, bridge_eth]`` line near the
+bottom of the file.
+
+We do not recommend changing the static address of the bridge to be anything other than ``192.168.131.1``; changing
+this may cause sensors that communicate over ethernet (e.g. lidars, cameras, GPS arrays) from working properly.
