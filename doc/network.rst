@@ -50,26 +50,35 @@ login.
 Connecting to Wifi Access Point
 --------------------------------
 
-Dingo's standard wireless network manager is wicd_. To connect to an access point in your lab, run:
+Dingo uses ``netplan`` for configuring its wired and wireless interfaces.  To connect Dingo to your wireless network,
+create the file ``/etc/netplan/60-wireless.yaml`` and fill in the following:
+
+.. code-block:: yaml
+
+    network:
+      wifis:
+        # Replace WIRELESS_INTERFACE with the name of the wireless network device, e.g. wlan0 or wlp3s0
+        # Fill in the SSID and PASSWORD fields as appropriate.  The password may be included as plain-text
+        # or as a password hash.  To generate the hashed password, run
+        #   echo -n 'WIFI_PASSWORD' | iconv -t UTF-16LE | openssl md4 -binary | xxd -p
+        # If you have multiple wireless cards you may include a block for each device.
+        # For more options, see https://netplan.io/reference/
+        WIRELESS_INTERFACE:
+          optional: true
+          access-points:
+            SSID_GOES_HERE:
+              password: PASSWORD_GOES_HERE
+          dhcp4: true
+          dhcp4-overrides:
+            send-hostname: true
+
+Once configured, run
 
 .. code-block:: bash
 
-    wicd-curses
+    sudo netplan apply
 
-You should see a browsable list of networks which the robot has detected. Use arrow keys to select the one you
-would like to connect to, and then press the right arrow to configure it. You can enter your network's password
-near the bottom of the page, and note that you must select the correct encryption scheme; most modern networks
-use ``WPA1/2 Passphrase``, so if that's you, make sure that option is selected. You also likely want to select
-the option to automatically reconnect to this network, so that Dingo will be there for you on your wireless
-automatically in the future.
-
-When you're finished, press F10 to save, and then C to connect.
-
-Wicd will tell you in the footer what IP address it was given by your lab's access point, so you can now log out,
-remove the network cable, and reconnect over wireless. When you've confirmed that all this is working as expected,
-close up Dingo's chassis.
-
-.. _wicd: https://launchpad.net/wicd
+to bring up your wireless connection.  Running ``ip a`` will show all active connections and their IP addresses.
 
 
 .. _remote:
